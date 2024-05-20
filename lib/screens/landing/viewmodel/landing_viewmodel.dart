@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:raven_pay_currency/imports.dart';
@@ -5,9 +6,12 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 class LandingViewModel extends BaseViewModel {
-  late WebSocketChannel channel;
+  late StreamController<dynamic> streamController;
+  WebSocketChannel? channel;
+  bool isSubscribed = false;
 
   init() {
+    streamController = StreamController<dynamic>.broadcast();
     channel = WebSocketChannel.connect(
       Uri.parse('wss://stream.binance.com:9443/ws'),
     );
@@ -15,6 +19,7 @@ class LandingViewModel extends BaseViewModel {
   }
 
   void sendRequest() {
+    if (isSubscribed) return;
     final request = jsonEncode(
       {
         "method": "SUBSCRIBE",
@@ -22,12 +27,17 @@ class LandingViewModel extends BaseViewModel {
         "id": 1
       },
     );
-    channel.sink.add(request);
+    channel!.stream.listen((data) {
+      streamController.add(data);
+    });
+    channel!.sink.add(request);
   }
 
   @override
   void dispose() {
-    channel.sink.close(status.goingAway);
+    if(channel == null) return;
+    channel!.sink.close(status.goingAway);
+    streamController.close();
     super.dispose();
   }
 }

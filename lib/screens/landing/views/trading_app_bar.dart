@@ -1,5 +1,7 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:convert';
+
 import 'package:raven_pay_currency/imports.dart';
+import 'package:raven_pay_currency/models/price_stream_response.dart';
 
 class TradingAppBar extends StackedHookView<LandingViewModel> {
   const TradingAppBar({super.key});
@@ -27,16 +29,35 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                   height: 40,
                 ),
                 const SizedBox(width: 6),
-                Text('BTC/USDT', style: bl.copyWith(fontWeight: FontWeight.bold)),
+                Text('BTC/USDT',
+                    style: bl.copyWith(fontWeight: FontWeight.bold)),
                 IconButton(
                   onPressed: () {},
                   icon: Icon(Icons.keyboard_arrow_down_sharp, color: bl.color),
                 ),
                 const SizedBox(width: 6),
-                Text(
-                  '\$20.0',
-                  style:
-                      bl.copyWith(fontWeight: FontWeight.bold, color: Colors.green),
+                StreamBuilder(
+                  stream: model.streamController.stream,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var data = PriceStreamResponse.fromJson(
+                          jsonDecode(snapshot.data));
+                      var amount = (double.tryParse(data.p) ?? 0).round();
+                      String formattedAmount =
+                          NumberFormat.currency(locale: 'en_US', symbol: '\$')
+                              .format(amount);
+                      return Text(
+                        formattedAmount,
+                        style: bl.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.green,
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    }
+                    return const Text('Connecting...');
+                  },
                 ),
               ],
             ),
@@ -53,7 +74,8 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.access_time, color: highlightColor, size: 20),
+                              Icon(Icons.access_time,
+                                  color: highlightColor, size: 20),
                               const SizedBox(width: 6),
                               Text(
                                 '24h change',
@@ -75,7 +97,8 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.arrow_upward, color: highlightColor, size: 20),
+                              Icon(Icons.arrow_upward,
+                                  color: highlightColor, size: 20),
                               const SizedBox(width: 6),
                               Text(
                                 '24h High',

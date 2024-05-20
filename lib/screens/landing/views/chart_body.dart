@@ -235,7 +235,7 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                   ],
                 ),
                 StreamBuilder(
-                  stream: model.channel.stream,
+                  stream: model.streamController.stream,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       return Text('Received: ${snapshot.data}');

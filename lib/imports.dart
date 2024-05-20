@@ -9,3 +9,4 @@ export 'package:raven_pay_currency/screens/landing/viewmodel/landing_viewmodel.d
 export 'package:raven_pay_currency/screens/landing/views/trading_app_bar.dart';
 export 'package:raven_pay_currency/screens/landing/views/chart_body.dart';
 export 'package:raven_pay_currency/app_theme/themeData.dart';
+export 'package:intl/intl.dart' hide TextDirection;
