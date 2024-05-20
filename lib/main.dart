@@ -9,13 +9,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'RavenPay Currency',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const Landing(),
+    return ValueListenableBuilder(
+      valueListenable: themeData,
+      builder: (context, theme, _) {
+        return MaterialApp(
+          title: 'RavenPay Currency',
+          theme: theme,
+          darkTheme: AppTheme.darkTheme,
+          home: const Landing(),
+        );
+      }
     );
   }
 }

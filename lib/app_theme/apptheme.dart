@@ -18,7 +18,7 @@ class AppTheme {
       iconTheme: IconThemeData(color: Colors.white),
     ),
     dividerColor: const Color(0xfff0f0f0),
-    cardColor: const Color(0xFFE7E7E7),
+    cardColor: const Color(0xfff1f1f1),
     fontFamily: 'Satoshi',
     buttonTheme: ButtonThemeData(
       buttonColor: AppColor.appColor,
@@ -72,6 +72,7 @@ class AppTheme {
       outline: Colors.transparent,
       surface: Colors.white,
       primary: AppColor.appColor,
+      secondary: Color(0xfff1f1f1),
       onSurface: Colors.black,
       onPrimary: Colors.white,
       background: Colors.white,
@@ -105,7 +106,7 @@ class AppTheme {
       ),
     ),
     dividerColor: Colors.white,
-    cardColor: const Color(0xff9f9f9f),
+    cardColor: const Color(0xff17181b),
     cardTheme: const CardTheme(color: Color(0xFF0E0E0E)),
     textTheme: const TextTheme(
       titleLarge: TextStyle(
@@ -139,7 +140,8 @@ class AppTheme {
     ),
     colorScheme: const ColorScheme.dark(
       outline: Colors.transparent,
-      surface: Color(0xff444343),
+      surface: Color(0xde9f0ff),
+      secondary: Color(0xff1c2127),
       primary: AppColor.appColor,
       onSurface: Colors.white,
       onPrimary: Colors.white,
