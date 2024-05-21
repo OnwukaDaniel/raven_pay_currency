@@ -12,6 +12,7 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
     var bm = TextUtils.bodyMedium(context);
     var bs = TextUtils.bodySmall(context);
     var highlightColor = AppColor.hintColor(context);
+    var lastAmount = ''; // to avoid 0.0 sent occasionally from binance
 
     return Material(
       elevation: 2,
@@ -46,11 +47,12 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                       String formattedAmount =
                           NumberFormat.currency(locale: 'en_US', symbol: '\$')
                               .format(amount);
+                      if(amount != 0) lastAmount = formattedAmount;
                       return Text(
-                        formattedAmount,
+                        lastAmount,
                         style: bl.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.green,
+                          color: data.m? Colors.green: Colors.red,
                         ),
                       );
                     } else if (snapshot.hasError) {

@@ -1,4 +1,5 @@
 import 'package:raven_pay_currency/imports.dart';
+import 'package:raven_pay_currency/widget/whisker_chart.dart';
 
 class ChartBody extends StackedHookView<LandingViewModel> {
   const ChartBody({super.key});
@@ -234,17 +235,7 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                     )
                   ],
                 ),
-                StreamBuilder(
-                  stream: model.streamController.stream,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return Text('Received: ${snapshot.data}');
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    }
-                    return const Text('Connecting...');
-                  },
-                ),
+                const WhiskerChart(),
                 const SizedBox(height: 8),
               ],
             ),
