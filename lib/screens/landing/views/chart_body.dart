@@ -91,77 +91,107 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                       children: [
                         Center(child: Text('Time', style: bs)),
                         const SizedBox(width: 4),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('1h'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '1h'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('1H', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('1H', style: bs),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('2h'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '2h'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('2H', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('2H', style: bs),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('4h'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '4h'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('4H', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('4H', style: bs),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('1d'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '1d'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('1D', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('1D', style: bs),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('1w'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '1w'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('1W', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('1W', style: bs),
                         ),
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
+                        InkWell(
+                          highlightColor: Colors.transparent,
+                          splashColor: Colors.transparent,
+                          onTap: () => model.setInterval('1m'),
+                          child: Container(
+                            margin: const EdgeInsets.all(8),
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8,
+                              horizontal: 12,
+                            ),
+                            decoration: BoxDecoration(
+                              color: model.interval.toLowerCase() == '1m'? Colors.grey : Colors.transparent,
+                              borderRadius: BorderRadius.circular(36),
+                            ),
+                            child: Text('1M', style: bs),
                           ),
-                          decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(36),
-                          ),
-                          child: Text('1M', style: bs),
                         ),
                         IconButton(
                           onPressed: () {},

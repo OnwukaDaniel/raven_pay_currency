@@ -22,7 +22,7 @@ class ChartViewModel extends BaseViewModel {
     }
   }
 
-  subToKLine({String interval = '1h'}) {
+  subToKLine() {
     if (kLineChannel != null) kLineChannel!.sink.close();
     String symbol = "btcusdt";
     String streamName = "$symbol@miniTicker";

@@ -9,7 +9,7 @@ class LandingViewModel extends BaseViewModel {
   WebSocketChannel? channel;
   List<KLineData> kLineDataList = [];
   bool isSubscribed = false;
-  String interval = '1m';
+  String interval = '1h';
 
   init() async {
     streamController = StreamController<dynamic>.broadcast();
@@ -35,6 +35,11 @@ class LandingViewModel extends BaseViewModel {
   }
 
   setStream(String input){
+    interval = input;
+    notifyListeners();
+  }
+
+  setInterval(String input){
     interval = input;
     notifyListeners();
   }
