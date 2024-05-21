@@ -10,6 +10,8 @@ class ChartViewModel extends BaseViewModel {
   WebSocketChannel? kLineChannel;
   List<KLineData> kLineDataList = [];
   String interval = '';
+  String symbol = "btc/usdt";
+
 
   init(String interval) async {
     this.interval = interval;
@@ -24,8 +26,7 @@ class ChartViewModel extends BaseViewModel {
 
   subToKLine() {
     if (kLineChannel != null) kLineChannel!.sink.close();
-    String symbol = "btcusdt";
-    String streamName = "$symbol@miniTicker";
+    String streamName = "${symbol.replaceAll('/', '')}@miniTicker";
     String binanceWebSocketUrl = "wss://stream.binance.com:9443/ws/$streamName";
     kLineChannel = WebSocketChannel.connect(Uri.parse(binanceWebSocketUrl));
     kLineChannel!.stream.listen((event) {
