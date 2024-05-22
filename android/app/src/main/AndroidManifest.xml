@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="raven_pay_currency"
-        android:name="RavenPay"
+        android:label="RavenPay"
+        android:name="${applicationName}"
         android:icon="@drawable/logo">
         <activity
             android:name=".MainActivity"

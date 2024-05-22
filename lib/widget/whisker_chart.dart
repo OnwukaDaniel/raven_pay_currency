@@ -155,7 +155,7 @@ class WhiskerChartBody extends StackedHookView<ChartViewModel> {
                       model.busy(model.getKLineKey))
                     Center(
                       child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: height / 2),
+                        padding: EdgeInsets.symmetric(vertical: (height / 2) - 8),
                         child: const SpinKitDoubleBounce(
                           color: AppColor.appColor,
                         ),

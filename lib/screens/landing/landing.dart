@@ -15,7 +15,7 @@ class Landing extends StatelessWidget {
         return Scaffold(
           backgroundColor: AppColor.bgColor(context),
           appBar: AppBar(
-            backgroundColor: AppColor.cardColor(context),
+            backgroundColor: AppColor.onPrimaryColor(context),
             automaticallyImplyLeading: false,
             title: Row(
               children: [
