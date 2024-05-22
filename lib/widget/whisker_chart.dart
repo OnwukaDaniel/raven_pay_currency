@@ -43,16 +43,14 @@ class WhiskerChartBody extends StackedHookView<ChartViewModel> {
               closePrice: json['c'].toString(),
               volume: json['v'].toString(),
             );
-            model.kLineStreamController.add(jsonEncode(
-              {
-                'E': newData.openTime,
-                'h': newData.highPrice,
-                'l': newData.lowPrice,
-                'o': newData.openPrice,
-                'c': newData.closePrice,
-                'v': newData.volume,
-              }
-            ));
+            model.kLineStreamController.add(jsonEncode({
+              'E': newData.openTime,
+              'h': newData.highPrice,
+              'l': newData.lowPrice,
+              'o': newData.openPrice,
+              'c': newData.closePrice,
+              'v': newData.volume,
+            }));
             //model.kLineDataList.add(newData);
           }
 
@@ -155,10 +153,12 @@ class WhiskerChartBody extends StackedHookView<ChartViewModel> {
                   ),
                   if (model.kLineDataList.isEmpty ||
                       model.busy(model.getKLineKey))
-                    const Center(
+                    Center(
                       child: Padding(
-                        padding: EdgeInsets.all(64),
-                        child: SpinKitDoubleBounce(color: AppColor.appColor),
+                        padding: EdgeInsets.symmetric(vertical: height / 2),
+                        child: const SpinKitDoubleBounce(
+                          color: AppColor.appColor,
+                        ),
                       ),
                     )
                 ],

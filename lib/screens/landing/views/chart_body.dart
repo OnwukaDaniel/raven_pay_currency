@@ -1,7 +1,3 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/widgets.dart';
 import 'package:raven_pay_currency/enum/body_tab_enum.dart';
 import 'package:raven_pay_currency/enum/market_type_enum.dart';
 import 'package:raven_pay_currency/imports.dart';
@@ -757,7 +753,12 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                                   height: 20,
                                   color: hc,
                                 ),
-                                if (isPost) Icon(Icons.check, color: hc)
+                                if (isPost)
+                                  Icon(
+                                    Icons.check,
+                                    color: hc,
+                                    size: 18,
+                                  )
                               ],
                             ),
                           ),
