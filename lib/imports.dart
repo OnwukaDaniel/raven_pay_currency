@@ -26,3 +26,6 @@ export 'package:raven_pay_currency/events/average_price_event.dart';
 export 'package:raven_pay_currency/models/price_stream_response.dart';
 export 'package:raven_pay_currency/models/twenty4_hr_data.dart';
 export 'package:raven_pay_currency/screens/landing/views/average_price_text.dart';
+export 'package:raven_pay_currency/enum/body_tab_enum.dart';
+export 'package:raven_pay_currency/enum/market_type_enum.dart';
+export 'package:raven_pay_currency/enum/trade_history_enum.dart';

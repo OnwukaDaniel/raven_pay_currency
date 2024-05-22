@@ -1,5 +1,3 @@
-import 'package:raven_pay_currency/enum/body_tab_enum.dart';
-import 'package:raven_pay_currency/enum/market_type_enum.dart';
 import 'package:raven_pay_currency/imports.dart';
 
 class ChartBody extends StackedHookView<LandingViewModel> {
@@ -11,6 +9,7 @@ class ChartBody extends StackedHookView<LandingViewModel> {
     var bm = TextUtils.bodyMedium(context);
     var bs = TextUtils.bodySmall(context);
     var highlightColor = AppColor.hintColor(context);
+    var selectedHistoryView = TradeHistoryEnum.openOrders;
 
     return Column(
       children: [
@@ -311,179 +310,260 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                 if (model.bodyTabEnum == BodyTabEnum.orderBook)
                   const OrderBook(),
                 if (model.bodyTabEnum == BodyTabEnum.recentTrade)
-                  const SizedBox(),
+                  SizedBox(
+                    height: 300,
+                    child: Center(child: Text('Recent Trades', style: bs)),
+                  ),
                 const SizedBox(height: 8),
               ],
             ),
           ),
         ),
         const SizedBox(height: 8),
-        Material(
-          elevation: 3,
-          color: AppColor.cardColor(context),
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 46,
-                  decoration: BoxDecoration(
-                    color: AppColor.surfaceSecondaryColor(context),
-                    borderRadius: BorderRadius.circular(8),
+        StatefulBuilder(builder: (context, setState) {
+          return Material(
+            elevation: 3,
+            color: AppColor.cardColor(context),
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 46,
+                    decoration: BoxDecoration(
+                      color: AppColor.surfaceSecondaryColor(context),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      children: [
+                        Row(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedHistoryView =
+                                      TradeHistoryEnum.openOrders;
+                                });
+                              },
+                              highlightColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 36,
+                                ),
+                                margin: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: selectedHistoryView ==
+                                      TradeHistoryEnum.openOrders
+                                      ? AppColor.surfaceColor(context)
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Center(
+                                  child: Text('Open Orders', style: bl),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Container(
+                                height: 30, color: Colors.grey, width: .1),
+                            const SizedBox(width: 12),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedHistoryView =
+                                      TradeHistoryEnum.positions;
+                                });
+                              },
+                              highlightColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 36,
+                                ),
+                                margin: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: selectedHistoryView ==
+                                      TradeHistoryEnum.positions
+                                      ? AppColor.surfaceColor(context)
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child:
+                                    Center(child: Text('Positions', style: bl)),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Container(
+                                height: 30, color: Colors.grey, width: .1),
+                            const SizedBox(width: 12),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedHistoryView =
+                                      TradeHistoryEnum.orderHistory;
+                                });
+                              },
+                              highlightColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 36,
+                                ),
+                                margin: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: selectedHistoryView ==
+                                      TradeHistoryEnum.orderHistory
+                                      ? AppColor.surfaceColor(context)
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Center(
+                                    child: Text('Order History', style: bl)),
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Container(
+                                height: 30, color: Colors.grey, width: .1),
+                            const SizedBox(width: 12),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  selectedHistoryView =
+                                      TradeHistoryEnum.tradeHistory;
+                                });
+                              },
+                              highlightColor: Colors.transparent,
+                              splashColor: Colors.transparent,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 8,
+                                  horizontal: 36,
+                                ),
+                                margin: const EdgeInsets.all(2),
+                                decoration: BoxDecoration(
+                                  color: selectedHistoryView ==
+                                          TradeHistoryEnum.tradeHistory
+                                      ? AppColor.surfaceColor(context)
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                                child: Center(
+                                  child: Text('Trade History', style: bl),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    children: [
-                      Row(
+                  SizedBox(
+                    height: 320,
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 36,
-                            ),
-                            margin: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              color: AppColor.surfaceColor(context),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text('Open Orders', style: bl),
-                            ),
+                          Builder(
+                            builder: (context) {
+                              var centerText = '';
+                              switch(selectedHistoryView){
+
+                                case TradeHistoryEnum.openOrders:
+                                  centerText = 'No Open Orders';
+                                  break;
+                                case TradeHistoryEnum.positions:
+                                  centerText = 'No Positions';
+                                  break;
+                                case TradeHistoryEnum.orderHistory:
+                                  centerText = 'No Order history';
+                                  break;
+                                case TradeHistoryEnum.tradeHistory:
+                                  centerText = 'No Trade History';
+                                  break;
+                              }
+                              return Text(
+                                centerText,
+                                style: bl.copyWith(fontWeight: FontWeight.bold),
+                              );
+                            }
                           ),
-                          const SizedBox(width: 12),
-                          Container(height: 30, color: Colors.grey, width: .1),
-                          const SizedBox(width: 12),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 36,
-                            ),
-                            margin: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              color: AppColor.surfaceColor(context),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(child: Text('Positions', style: bl)),
-                          ),
-                          const SizedBox(width: 12),
-                          Container(height: 30, color: Colors.grey, width: .1),
-                          const SizedBox(width: 12),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 36,
-                            ),
-                            margin: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              color: AppColor.surfaceColor(context),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child:
-                                Center(child: Text('Order History', style: bl)),
-                          ),
-                          const SizedBox(width: 12),
-                          Container(height: 30, color: Colors.grey, width: .1),
-                          const SizedBox(width: 12),
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              vertical: 8,
-                              horizontal: 36,
-                            ),
-                            margin: const EdgeInsets.all(2),
-                            decoration: BoxDecoration(
-                              color: AppColor.surfaceColor(context),
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: Text('Trade History', style: bl),
+                          Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: Text(
+                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id pulvinar nullam sit imperdiet pulvinar.',
+                              textAlign: TextAlign.center,
+                              style: bm,
                             ),
                           ),
                         ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 320,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  Material(
+                    color: AppColor.surfaceColor(context),
+                    child: Row(
                       children: [
-                        Text(
-                          'No Open Orders',
-                          style: bl.copyWith(fontWeight: FontWeight.bold),
+                        Expanded(
+                          child: InkWell(
+                            onTap: () => buy(context),
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                'BUY',
+                                style: bl,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(32),
-                          child: Text(
-                            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id pulvinar nullam sit imperdiet pulvinar.',
-                            textAlign: TextAlign.center,
-                            style: bm,
+                        Expanded(
+                          child: InkWell(
+                            onTap: () => buy(context, sell: true),
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            child: Container(
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 6,
+                              ),
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Text(
+                                'Sell',
+                                style: bl,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-                Material(
-                  color: AppColor.surfaceColor(context),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: InkWell(
-                          onTap: () => buy(context),
-                          highlightColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              'BUY',
-                              style: bl,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: InkWell(
-                          onTap: () => buy(context, sell: true),
-                          highlightColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            margin: const EdgeInsets.symmetric(
-                              vertical: 16,
-                              horizontal: 6,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Text(
-                              'Sell',
-                              style: bl,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ],
     );
   }

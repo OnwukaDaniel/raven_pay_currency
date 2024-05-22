@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:raven_pay_currency/imports.dart';
 
 class OrderBook extends StatelessWidget {
@@ -138,139 +139,167 @@ class OrderBook extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: [
-                    SizedBox(
-                      height: 300,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.asks.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.asks[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    (double.tryParse(datum.price)??0).toString(),
-                                    textAlign: TextAlign.center,
-                                    style: bs.copyWith(color: Colors.red),
-                                  ),
-                                );
-                              },
-                            ),
+                    if (stream.connectionState == ConnectionState.waiting)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 150),
+                        child: Center(
+                          child: SpinKitDoubleBounce(
+                            color: Colors.white,
                           ),
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.asks.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.asks[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    (double.tryParse(datum.quantity)??0).toString(),
-                                    textAlign: TextAlign.center,
-                                    style: bs,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.asks.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.asks[index];
-                                var amt = ((double.tryParse(datum.price) ?? 0) *
-                                    (double.tryParse(datum.quantity) ?? 0))
-                                    .toStringAsFixed(2);
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    amt,
-                                    textAlign: TextAlign.center,
-                                    style: bs,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    if (stream.connectionState != ConnectionState.waiting)
+                      SizedBox(
+                        height: 300,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.asks.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.asks[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      (double.tryParse(datum.price) ?? 0)
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: bs.copyWith(color: Colors.red),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.asks.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.asks[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      (double.tryParse(datum.quantity) ?? 0)
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: bs,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.asks.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.asks[index];
+                                  var amt = ((double.tryParse(datum.price) ??
+                                              0) *
+                                          (double.tryParse(datum.quantity) ??
+                                              0))
+                                      .toStringAsFixed(2);
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      amt,
+                                      textAlign: TextAlign.center,
+                                      style: bs,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                     const SizedBox(height: 12),
                     const AveragePriceText(),
                     const SizedBox(height: 12),
-                    SizedBox(
-                      height: 300,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.bids.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.bids[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    (double.tryParse(datum.price)??0).toString(),
-                                    textAlign: TextAlign.center,
-                                    style: bs.copyWith(color: Colors.green),
-                                  ),
-                                );
-                              },
-                            ),
+                    if (stream.connectionState == ConnectionState.waiting)
+                      const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 150),
+                        child: Center(
+                          child: SpinKitDoubleBounce(
+                            color: Colors.white,
                           ),
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.asks.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.asks[index];
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    (double.tryParse(datum.quantity)??0).toString(),
-                                    textAlign: TextAlign.center,
-                                    style: bs,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemCount: data.asks.length,
-                              itemBuilder: (_, index) {
-                                var datum = data.asks[index];
-                                var amt = ((double.tryParse(datum.price) ?? 0) *
-                                    (double.tryParse(datum.quantity) ?? 0))
-                                    .toStringAsFixed(2);
-                                return Padding(
-                                  padding: const EdgeInsets.all(2),
-                                  child: Text(
-                                    amt,
-                                    textAlign: TextAlign.center,
-                                    style: bs,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                    if (stream.connectionState != ConnectionState.waiting)
+                      SizedBox(
+                        height: 300,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.bids.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.bids[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      (double.tryParse(datum.price) ?? 0)
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: bs.copyWith(color: Colors.green),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.asks.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.asks[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      (double.tryParse(datum.quantity) ?? 0)
+                                          .toString(),
+                                      textAlign: TextAlign.center,
+                                      style: bs,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemCount: data.asks.length,
+                                itemBuilder: (_, index) {
+                                  var datum = data.asks[index];
+                                  var amt = ((double.tryParse(datum.price) ??
+                                              0) *
+                                          (double.tryParse(datum.quantity) ??
+                                              0))
+                                      .toStringAsFixed(2);
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2),
+                                    child: Text(
+                                      amt,
+                                      textAlign: TextAlign.center,
+                                      style: bs,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
                   ],
                 );
               },
