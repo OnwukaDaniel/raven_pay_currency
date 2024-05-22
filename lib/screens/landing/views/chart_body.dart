@@ -293,7 +293,6 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                             ),
                             margin: const EdgeInsets.all(2),
                             decoration: BoxDecoration(
-                              color: Colors.grey.withOpacity(.2),
                               borderRadius: BorderRadius.circular(56),
                             ),
                             child: Center(
