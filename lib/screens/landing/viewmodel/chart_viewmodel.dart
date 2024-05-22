@@ -11,12 +11,15 @@ class ChartViewModel extends BaseViewModel {
   List<KLineData> kLineDataList = [];
   String interval = '';
   String symbol = "btc/usdt";
+  final String getKLineKey = 'getKLineKey';
 
 
   init(String interval) async {
     this.interval = interval;
     kLineStreamController = StreamController<dynamic>.broadcast();
+    setBusyForObject(getKLineKey, true);
     var list = await ChartRepo.getKLine(interval: this.interval);
+    setBusyForObject(getKLineKey, false);
     kLineDataList = list.reversed.toList();
     if (kLineDataList.isNotEmpty) {
       subToKLine();

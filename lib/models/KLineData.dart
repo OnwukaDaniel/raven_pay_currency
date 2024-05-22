@@ -25,4 +25,18 @@ class KLineData {
   this.takeBuyBaseVolume = '',
   this.takeBuyQuoteVolume = '',
   });
+
+  Map<String, dynamic> toJson() => {
+    'openTime': openTime,
+    'openPrice': openPrice,
+    'highPrice': highPrice,
+    'lowPrice': lowPrice,
+    'closePrice': closePrice,
+    'volume': volume,
+    'closeTime': closeTime,
+    'quoteVolume': quoteVolume,
+    'numberOfTrades': numberOfTrades,
+    'takeBuyBaseVolume': takeBuyBaseVolume,
+    'takeBuyQuoteVolume': takeBuyQuoteVolume,
+  };
 }
