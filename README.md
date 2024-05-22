@@ -53,8 +53,10 @@ This is a single-page cryptocurrency Flutter app displaying real-time data for t
 3. Use the popup menu in the Order Book tab to adjust the number of bids and asks displayed.
 
 ## Video Demo
+For a quick overview of the app, watch the video demo
+![ap_video_example](https://github.com/OnwukaDaniel/raven_pay_currency/assets/66129851/80827472-88a2-4c21-96b0-f4b6dbc8b68d)
 
-For a quick overview of the app, watch the video demo <a href="assets/readme/ap_video_example.mp4">here</a>.
+<a href="assets/readme/ap_video_example.mp4">here</a>.
 
 ## Apk
 
