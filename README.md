@@ -1,4 +1,4 @@
-# Crypto Single Page Flutter App
+![ap_video_example](https://github.com/OnwukaDaniel/raven_pay_currency/assets/66129851/a5998ec5-583c-432f-a2b7-078cfe0b2f5a)# Crypto Single Page Flutter App
 
 This is a single-page cryptocurrency Flutter app displaying real-time data for the BTC/USDT trading pair. The app fetches and displays the pair price, 24hr change, 24hr high, 24hr low, and average weighted price using Binance WebSocket streams. It also features three main tabs: `Chart`, `Order Book`, and `Recent Trade`, with real-time updates.
 
@@ -56,7 +56,7 @@ This is a single-page cryptocurrency Flutter app displaying real-time data for t
 For a quick overview of the app, watch the video demo
 ![ap_video_example](https://github.com/OnwukaDaniel/raven_pay_currency/assets/66129851/80827472-88a2-4c21-96b0-f4b6dbc8b68d)
 
-<a href="assets/readme/ap_video_example.mp4">here</a>.
+<a href="assets/readme/ap_video_example.gif">here</a>.
 
 ## Apk
 
