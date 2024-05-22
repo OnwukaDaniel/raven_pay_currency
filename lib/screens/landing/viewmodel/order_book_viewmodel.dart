@@ -10,6 +10,7 @@ class OrderBookViewModel extends BaseViewModel {
   WebSocketChannel? orderBookChannel;
   double averagePrice = 0.0;
   String symbol = "btcusdt";
+  int orderContent = 10;
 
   init() async {
     orderBookController = StreamController<dynamic>.broadcast();
@@ -27,11 +28,8 @@ class OrderBookViewModel extends BaseViewModel {
     });
   }
 
-  @override
-  void dispose() {
-    //if (orderBookChannel == null) return;
-    //orderBookChannel!.sink.close(status.goingAway);
-    //orderBookController.close();
-    super.dispose();
+  setOrderContent(int input){
+    orderContent = input;
+    notifyListeners();
   }
 }

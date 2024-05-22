@@ -144,7 +144,7 @@ class AppTheme {
       secondary: Color(0xff1c2127),
       primary: AppColor.appColor,
       onSurface: Colors.white,
-      onPrimary: Colors.white,
+      onPrimary: Color(0xff17181b),
       background: Color(0xff20252b),
     ),
   );

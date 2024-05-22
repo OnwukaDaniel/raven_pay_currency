@@ -15,7 +15,7 @@ class ChartBody extends StackedHookView<LandingViewModel> {
       children: [
         Material(
           elevation: 3,
-          color: AppColor.cardColor(context),
+          color: AppColor.onPrimaryColor(context),
           child: Padding(
             padding: const EdgeInsets.all(8),
             child: Column(
@@ -323,7 +323,7 @@ class ChartBody extends StackedHookView<LandingViewModel> {
         StatefulBuilder(builder: (context, setState) {
           return Material(
             elevation: 3,
-            color: AppColor.cardColor(context),
+            color: AppColor.onPrimaryColor(context),
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: Column(
@@ -876,7 +876,9 @@ class ChartBody extends StackedHookView<LandingViewModel> {
                           ),
                         ],
                       ),
+                      const SizedBox(height: 8),
                       Divider(color: Colors.grey.withOpacity(.2)),
+                      const SizedBox(height: 8),
                       Row(
                         children: [
                           Text(

@@ -15,7 +15,7 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
 
     return Material(
       elevation: 2,
-      color: AppColor.cardColor(context),
+      color: AppColor.onPrimaryColor(context),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
