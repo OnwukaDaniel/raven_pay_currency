@@ -54,7 +54,7 @@ This is a single-page cryptocurrency Flutter app displaying real-time data for t
 
 ## Video Demo
 
-For a quick overview of the app, watch the video demo <a href="assets/readme/app-release.apk">here</a>.
+For a quick overview of the app, watch the video demo <a href="assets/readme/ap_video_example.mp4">here</a>.
 
 ## Apk
 
