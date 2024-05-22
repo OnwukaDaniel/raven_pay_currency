@@ -64,4 +64,4 @@ Install the apk <a href="assets/readme/app-release.apk">here</a>. then click on 
 
 Feel free to fork and contribute to this project. Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
-For any questions, contact us at <a href="mailto:onwukadaniel16@gmail.com">email@example.com</a>.
+For any questions, contact us at <a href="mailto:onwukadaniel16@gmail.com">onwukadaniel</a>.
