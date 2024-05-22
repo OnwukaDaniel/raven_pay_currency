@@ -40,6 +40,10 @@ class AppColor {
     return Theme.of(context).colorScheme.secondary;
   }
 
+  static Color surfaceBackgroundColor(BuildContext context) {
+    return Theme.of(context).colorScheme.background;
+  }
+
   static Color dividerColor(BuildContext context) {
     return Theme.of(context).dividerColor;
   }

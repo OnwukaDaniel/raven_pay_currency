@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:raven_pay_currency/imports.dart';
-import 'package:raven_pay_currency/models/price_stream_response.dart';
-import 'package:raven_pay_currency/models/twenty4_hr_data.dart';
+
 
 class TradingAppBar extends StackedHookView<LandingViewModel> {
   const TradingAppBar({super.key});
@@ -91,12 +89,19 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                             stream: model.twenty4hrController.stream,
                             builder: (_, stream) {
                               Twenty4HrData data = Twenty4HrData();
-                              if(stream.data != null){
-                                data = Twenty4HrData.fromJson(jsonDecode(stream.data));
+                              if (stream.data != null) {
+                                data = Twenty4HrData.fromJson(
+                                    jsonDecode(stream.data));
+                                averagePriceEventBus.fire(
+                                  AveragePriceEvent(
+                                    data.weightedAveragePrice,
+                                  ),
+                                );
                               }
                               var t4 = (data.priceChange.toStringAsFixed(2));
                               var perc = data.priceChangePercent;
-                              Color color = perc > 0? Colors.green: Colors.red;
+                              Color color =
+                                  perc > 0 ? Colors.green : Colors.red;
                               return Text(
                                 '$t4 $perc%',
                                 style: bm.copyWith(color: color),
@@ -126,12 +131,14 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                             stream: model.twenty4hrController.stream,
                             builder: (_, stream) {
                               Twenty4HrData data = Twenty4HrData();
-                              if(stream.data != null){
-                                data = Twenty4HrData.fromJson(jsonDecode(stream.data));
+                              if (stream.data != null) {
+                                data = Twenty4HrData.fromJson(
+                                    jsonDecode(stream.data));
                               }
                               var tHigh = (data.highPrice.toStringAsFixed(2));
                               var perc = data.priceChangePercent;
-                              Color color = perc > 0? Colors.green: Colors.red;
+                              Color color =
+                                  perc > 0 ? Colors.green : Colors.red;
                               return Text(
                                 tHigh,
                                 style: bm.copyWith(color: color),
@@ -164,12 +171,14 @@ class TradingAppBar extends StackedHookView<LandingViewModel> {
                             stream: model.twenty4hrController.stream,
                             builder: (_, stream) {
                               Twenty4HrData data = Twenty4HrData();
-                              if(stream.data != null){
-                                data = Twenty4HrData.fromJson(jsonDecode(stream.data));
+                              if (stream.data != null) {
+                                data = Twenty4HrData.fromJson(
+                                    jsonDecode(stream.data));
                               }
                               var tLow = (data.lowPrice.toStringAsFixed(2));
                               var perc = data.priceChangePercent;
-                              Color color = perc > 0? Colors.green: Colors.red;
+                              Color color =
+                                  perc > 0 ? Colors.green : Colors.red;
                               return Text(
                                 tLow,
                                 style: bm.copyWith(color: color),

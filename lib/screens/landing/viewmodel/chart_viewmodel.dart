@@ -39,9 +39,9 @@ class ChartViewModel extends BaseViewModel {
 
   @override
   void dispose() {
-    if (kLineChannel == null) return;
-    kLineChannel!.sink.close(status.goingAway);
-    kLineStreamController.close();
+    //if (kLineChannel == null) return;
+    //kLineChannel!.sink.close(status.goingAway);
+    //kLineStreamController.close();
     super.dispose();
   }
 }

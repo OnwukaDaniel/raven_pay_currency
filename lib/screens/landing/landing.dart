@@ -42,14 +42,47 @@ class Landing extends StatelessWidget {
                   color: AppColor.hintColor(context),
                 ),
               ),
-              IconButton(
-                onPressed: () {},
-                icon: Image.asset(
+              PopupMenuButton<String>(
+                color: AppColor.cardColor(context),
+                onSelected: (String value) {
+                  if(value == 'Log out') Navigator.pop(context);
+                },
+                itemBuilder: (context) => [
+                  const PopupMenuItem<String>(
+                    value: 'Exchange',
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 64),
+                      child: Text('Exchange'),
+                    ),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'Wallets',
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 64),
+                      child: Text('Wallets'),
+                    ),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'Roqqu Hub',
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 64),
+                      child: Text('Roqqu Hub'),
+                    ),
+                  ),
+                  const PopupMenuItem<String>(
+                    value: 'Log out',
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 64),
+                      child: Text('Log out'),
+                    ),
+                  ),
+                ],
+                child: Image.asset(
                   'assets/landing/more_icon.png',
                   width: 35,
                   height: 35,
                   color: AppColor.hintColor(context),
-                ),
+                ), // Optional: Customize the button icon
               ),
               const SizedBox(width: 6),
             ],

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:raven_pay_currency/enum/body_tab_enum.dart';
 import 'package:raven_pay_currency/imports.dart';
 import 'package:web_socket_channel/status.dart' as status;
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -7,9 +8,12 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 class LandingViewModel extends BaseViewModel {
   late StreamController<dynamic> streamController;
   late StreamController<dynamic> twenty4hrController;
+  late StreamController<dynamic> orderBookController;
+  WebSocketChannel? orderBookChannel;
   WebSocketChannel? twenty4hrChannel;
   WebSocketChannel? channel;
   List<KLineData> kLineDataList = [];
+  BodyTabEnum bodyTabEnum = BodyTabEnum.chart;
   bool isSubscribed = false;
   String interval = '1h';
   String symbol = "btcusdt";
@@ -17,6 +21,7 @@ class LandingViewModel extends BaseViewModel {
   init() async {
     streamController = StreamController<dynamic>.broadcast();
     twenty4hrController = StreamController<dynamic>.broadcast();
+    orderBookController = StreamController<dynamic>.broadcast();
     channel = WebSocketChannel.connect(
       Uri.parse('wss://stream.binance.com:9443/ws'),
     );
@@ -26,7 +31,18 @@ class LandingViewModel extends BaseViewModel {
     String streamName = "$symbol@ticker";
     String binanceWebSocketUrl = "wss://stream.binance.com:9443/ws/$streamName";
     twenty4hrChannel = WebSocketChannel.connect(Uri.parse(binanceWebSocketUrl));
+
+    String streamNameOrderBook = "$symbol@depth";
+    String orderBookWebSocketUrl =
+        "wss://stream.binance.com:9443/ws/$streamNameOrderBook";
+    orderBookChannel =
+        WebSocketChannel.connect(Uri.parse(orderBookWebSocketUrl));
     sendRequest();
+  }
+
+  setBodyTab(BodyTabEnum tab) {
+    bodyTabEnum = tab;
+    notifyListeners();
   }
 
   void sendRequest() {
@@ -47,12 +63,12 @@ class LandingViewModel extends BaseViewModel {
     channel!.sink.add(request);
   }
 
-  setStream(String input){
+  setStream(String input) {
     interval = input;
     notifyListeners();
   }
 
-  setInterval(String input){
+  setInterval(String input) {
     interval = input;
     notifyListeners();
   }
