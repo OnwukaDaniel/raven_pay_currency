@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
       valueListenable: themeData,
       builder: (context, theme, _) {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'RavenPay Currency',
           theme: theme,
           darkTheme: AppTheme.darkTheme,
